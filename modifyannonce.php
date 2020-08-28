@@ -4,6 +4,7 @@
     require('inc/function.php'); 
     require('assets/head.php');
     include('assets/nav.php');
+    $date = date('Y-m-d');
 
     if(isset($_GET['id'])){
         global $db;
@@ -34,11 +35,11 @@
                     </div>
                     <div class="form-group">
                     <p>Veuillez entrer les dates de disponibilités de votre logement :</p>
-                    <input type="date" name="dateDebut" value="<?= $row['start_date'] ?>">
+                    <input type="date" name="dateDebut" value="<?= $row['start_date'] ?>" min="<?= $date ?>">
                     <label for="dateDebut">: Date à laquelle le logement devient disponible</label>
                     </div>
                     <div class="form-group">
-                    <input type="date" name="dateFin" value="<?= $row['end_date'] ?>">
+                    <input type="date" name="dateFin" value="<?= $row['end_date'] ?>" min="<?= $date ?>">
                     <label for="dateFin">: Date de la veille où le logement devient indisponible</label>
                     </div>
                     <div class="form-group">

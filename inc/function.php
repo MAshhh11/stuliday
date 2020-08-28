@@ -49,10 +49,15 @@
                         <div class="card-text">
                             <p>Titre: <?= $row['title']; ?></p>
                             <p>Description: <?= shorten_text($row['description']); ?></p>
-                            <p>Adresse: <?= $row['address_article']; ?></p>
                             <p>Ville: <?= $row['city']; ?></p>
                             <p>Prix par jour en euros: <?= $row['price']; ?></p>
+                            <p>Location du lieu : Du <?= $row['start_date']; ?> Au <?= $row['end_date']; ?></p>
                             <a class="btn btn-primary mb-3" href="displayannonce.php?id=<?= $row['id']; ?>" >Voir l'annonce</a>
+                            <?php 
+                                if(($_SESSION['id'] != $row['author_article']) && $row['active'] != 0 ){ ?>
+                                    <a class="btn btn-primary mb-3" href="reserverannonce.php?id=<?= $row['id']; ?>">Réserver</a>
+                                <?php } ?> 
+                                       
                         </div>
                     </div>
                 </div>
@@ -61,7 +66,7 @@
         }
         
     }
-
+ 
     function displayAnnonce(){
         if(isset($_GET['id'])){
             global $db;
@@ -84,6 +89,13 @@
                                 <p>Adresse: <?= $row['address_article']; ?></p>
                                 <p>Ville: <?= $row['city']; ?></p>
                                 <p>Prix par jour en euros: <?= $row['price']; ?></p>
+                                <p>Location du lieu : Du <?= $row['start_date']; ?> Au <?= $row['end_date']; ?></p>
+                                <a class="btn btn-primary mb-3" href="annonces.php">Retour</a>
+                                <?php 
+                                if($_SESSION['id'] != $row['author_article'] && $row['active'] != 0){ ?>
+                                    <a class="btn btn-primary mb-3" href="reserverannonce.php?id=<?= $row['id']; ?>">Réserver</a>
+                                <?php } ?>
+                                
                             </div>
                         </div>
                     </div>
@@ -115,6 +127,7 @@
                                 <p>Adresse: <?= $row['address_article']; ?></p>
                                 <p>Ville: <?= $row['city']; ?></p>
                                 <p>Prix par jour en euros: <?= $row['price']; ?></p>
+                                <p>Location du lieu : Du <?= $row['start_date']; ?> Au <?= $row['end_date']; ?></p>
                                 <a class="btn btn-primary mb-3" href="modifyannonce.php?id=<?= $row['id']; ?>" >Modifier l'annonce</a>
                                 <a class="btn btn-primary mb-3" href="deleteannonce.php?id=<?= $row['id']; ?>" >Supprimer l'annonce</a>
                             </div>
@@ -142,6 +155,48 @@
             }
         }
     }
+
+    function reservationsCount() {
+        global $db;
+        if(isset($_SESSION['id'])){
+            $id_user = $_SESSION['id'];
+            $compteur = $db->query("SELECT id_user FROM reservations WHERE id_user = $id_user");
+            $compteur->setFetchMode(PDO::FETCH_ASSOC);
+            while($result = $compteur->fetchAll()){
+                ?>
+             <a href="" class="btn btn-primary mb-3 <?php  if($result < 1){ echo 'disabled'; } ?>" data-toggle="modal" data-target="#listingResa">Voir mes reservations  
+               <span class="badge badge-primary badge-pill"><?= COUNT($result); ?></span>
+            </a>
+            <?php
+            }
+        }
+    }
+
+    function displayYourReservation(){
+        if(isset($_SESSION['id'])){
+            global $db;
+            $user_id = $_SESSION['id'];
+            $sql = $db->query("SELECT * FROM reservations WHERE id_user = $user_id");
+            $sql->setFetchMode(PDO::FETCH_ASSOC);
+
+            while($row = $sql->fetch()){ 
+            ?>
+            <div class="col-12">
+                <div class="mt-3">
+                    <div class="card-title">
+                        <h2>Votre réservation :</h2>
+                        <p>Annonce n°<?= $row['id_annonce']; ?></p>
+                        <a class="btn btn-primary mb-3" href="displayannonce.php?id=<?= $row['id_annonce']; ?>"> Voir l'annonce</a>
+                        <a class="btn btn-primary mb-3" href="cancelreservation.php?id=<?= $row['id']; ?>"> Annuler la réservation</a>
+                    </div>
+                </div>
+            </div>
+            <?php
+             }
+        }
+    }
+
+
 
 
 ?>

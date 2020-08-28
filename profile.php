@@ -71,8 +71,7 @@
             <div class="col-md-4">
                 <a href="create_annonce.php" class="btn btn-primary mb-3">Publier une nouvelle annonce</a>
                <div><?php annoncesCount();?></div>
-                <a href="#" class="btn btn-primary mb-3 <?php  if($compt < 1){ echo 'disabled'; } ?>"
-                    data-toggle="modal" data-target="#listingResa">Voir mes réservations <span class="badge badge-primary badge-pill">5</span></a>
+               <div><?php reservationsCount();?></div>
             </div>
             <div class="col-md-12 text-center pt-5 my-2">
                 <a class="btn btn-info back" href="annonces.php">Retour aux annonces</a>
@@ -81,6 +80,7 @@
     </div>
 </section>
 
+<!-- Modal afficher mes annonces -->
 <div class="modal fade" id="listingAnnonces" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog listings" role="document">
@@ -93,6 +93,24 @@
             </div>
             <div class="modal-body">
             <?php displayYourAnnonces(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal afficher mes reservations -->
+<div class="modal fade" id="listingResa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog listings" role="document">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mes annonces</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <?php displayYourReservation(); ?>
             </div>
         </div>
     </div>

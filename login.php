@@ -19,7 +19,7 @@
                     $sth->bindValue(':password',$user_pass);
                     if($sth->execute()){
                         echo "<div class ='alert alert-success'> Votre compte a bien été créé !</div>";
-                        echo '<a class="btn btn-success col" href="profile.php">Accéder à votre profil</a>';
+                        header('Location:profile.php');
                     }
                 }else{
                     echo "<div class ='alert alert-danger'> Les mots de passes ne concordent pas </div>";
@@ -48,7 +48,7 @@
              $_SESSION['email'] = $db_email;
 
              echo '<div class="alert alert-success">Vous êtes bien connecté !</div>';
-             echo '<a class="btn btn-success col" href="annonces.php">Accéder aux annonces</a>';
+             header('Location:profile.php');
              
          }else{
              echo '<div class="alert alert-danger">Mot de passe incorrect !</div>';

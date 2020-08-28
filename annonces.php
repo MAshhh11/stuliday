@@ -5,10 +5,8 @@
     require('inc/function.php');
     include('assets/nav.php');
 
-    
-
     ?>
-        
+
         <section>
             <div class="container">
                 <div class="row">
