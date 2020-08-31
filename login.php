@@ -18,8 +18,8 @@
                     $sth->bindValue(':email',$user_email);
                     $sth->bindValue(':password',$user_pass);
                     if($sth->execute()){
-                        echo "<div class ='alert alert-success'> Votre compte a bien été créé !</div>";
-                        header('Location:profile.php');
+                        echo "<div class ='alert alert-success'> Votre compte a bien été créé ! Pour accéder à votre profil, veuillez vous connecter !</div>";
+                        
                     }
                 }else{
                     echo "<div class ='alert alert-danger'> Les mots de passes ne concordent pas </div>";

@@ -6,6 +6,14 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <a class="navbar-brand" href="index.php" style="font-family:Lobster;font-size: 35px; color: #555">Stuliday</a>
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+    
+      <?php
+      if (isset($_SESSION['id']) && $_SESSION['id'] == 6){
+        ?>
+        <li class="nav-item">
+          <a class="nav-link" href="userlist.php">Admin tools</a>
+        </li>
+        <?php } ?>
       <li class="nav-item">
         <a class="nav-link" href="annonces.php">Annonces</a>
       </li>

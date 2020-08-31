@@ -20,10 +20,11 @@
         ?>
            <div class="col-4">
                 <div class="card p-3 mt-3">
-                    <h2>User n°<?= $row['id']; ?></h2>
+                    <h3>Utilisateur n°<?= $row['id']; ?></h3>
                     <div class="card-body">
                         <p>Email: <?= $row['email']; ?></p>
                         <p>First name: <?= $row['firstName']; ?></p>
+                        <a class="btn btn-info mb-3" href="deleteuser.php?id=<?= $row['id']; ?>"> Supprimer l'utilisateur</a>
                     </div>
                 </div>
             </div>
@@ -31,6 +32,35 @@
         }
         
     }
+
+    function displayResa(){
+        global $db;
+        $sql = $db->query("SELECT * FROM reservations");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+
+        while($row = $sql->fetch()){ 
+        ?>
+           <div class="col-4">
+                <div class="card p-2 mt-3">
+                    <div class="card-body">
+                    <h3>Réservation n°<?= $row['id']; ?></h3>
+                        <p>Utilisateur n° : <?= $row['id_user']; ?></p>
+                        <p>Annonce n° : <?= $row['id_annonce']; ?></p>
+                        <p>Date : <?= $row['dateReservation']; ?></p>
+                        <div class="mt-3">
+                        <a class="btn-info btn" href="displayannonce.php?id=<?= $row['id_annonce']; ?>">Voir l'annonce</a>
+                        </div>
+                        <div class="mt-3">
+                        <a class="btn btn-info mb-3" href="cancelreservation.php?id=<?= $row['id']; ?>"> Supprimer la réservation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+        
+    }
+
 
     function displayAllAnnonces(){
         global $db;
