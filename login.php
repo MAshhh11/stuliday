@@ -65,7 +65,7 @@
             <?php if (isset($message)){
                 echo "<p> ".$message." </p>";
             } ?>
-            <div class="col-md-6">
+            <div class="col-md-6 mt-5">
                 <h1>Se connecter</h1>
                 
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
@@ -78,10 +78,10 @@
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" name="user_password" class="form-control" id="exampleInputPassword1" placeholder="Entrez votre mot de passe...">
                     </div>
-                    <button type="submit" name="submit-login" class="btn btn-primary col-md-4 offset-3">Connexion</button>
+                    <button type="submit" name="submit-login" class="btn btn-info col-md-4 offset-3">Connexion</button>
                 </form>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mt-5">
             <h1>S'inscrire</h1>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                     <div class="form-group col-md-10">
@@ -97,7 +97,7 @@
                         <label for="exampleInputPassword3">Re-type your Password</label>
                         <input type="password" name="user_password_2_signup" class="form-control" id="exampleInputPassword3" placeholder="Password">
                     </div>
-                    <button type="submit" name="submit-signup" class="btn btn-primary col-md-4 offset-3">Inscription</button>
+                    <button type="submit" name="submit-signup" class="btn btn-info col-md-4 offset-3">Inscription</button>
                 </form>
             </div>
         </div>

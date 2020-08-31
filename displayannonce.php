@@ -10,7 +10,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">    
+            <div class="col-md-12 mt-3">    
                 <h1>Votre annonce :</h1>
             </div>
         </div>

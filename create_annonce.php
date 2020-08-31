@@ -4,6 +4,7 @@
     include('assets/nav.php');
     require('inc/connect.php'); 
     $date = date('Y-m-d');
+    $end_date = date('Y-m-d', strtotime('+1 days'));
 ?>
 
 <div class="col-md-12 text-center">
@@ -28,7 +29,7 @@
                     <label for="dateDebut">: Date à laquelle le logement devient disponible</label>
                     </div>
                     <div class="form-group">
-                    <input type="date" name="dateFin" min="<?= $date ?>">
+                    <input type="date" name="dateFin" min="<?= $end_date ?>">
                     <label for="dateFin">: Date de la veille où le logement devient indisponible</label>
                     </div>
                     <div class="form-group">
@@ -63,6 +64,9 @@
                     </div>  
                     <input type="submit" name="submit_annonce" class="btn btn-info" value="Envoyez l'annonce">
                 </form>
+            </div>
+            <div class="col-5">
+            <a class="btn btn-info mb-3" href="profile.php" >Retour sans faire de modifications</a>
             </div>
 
 <?php require('assets/footer.php'); ?>

@@ -5,6 +5,7 @@
     require('assets/head.php');
     include('assets/nav.php');
     $date = date('Y-m-d');
+    $end_date = date('Y-m-d', strtotime('+1 days'));
 
     if(isset($_GET['id'])){
         global $db;
@@ -26,12 +27,12 @@
                     <div class="form-group">
                         <label for="exampleInputTitle">Titre de l'annonce</label>
                         <input type="text" class="form-control" name="titre" id="exampleInputTitle"
-                             placeholder="<?= $row['title'] ?>">
+                             value="<?= $row['title'] ?>">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputDescription">Description de l'annonce</label>
                         <input type="text" name="description" class="form-control" id="exampleInputDescription"
-                            placeholder="<?= $row['description'] ?>">
+                            value="<?= $row['description'] ?>">
                     </div>
                     <div class="form-group">
                     <p>Veuillez entrer les dates de disponibilités de votre logement :</p>
@@ -39,7 +40,7 @@
                     <label for="dateDebut">: Date à laquelle le logement devient disponible</label>
                     </div>
                     <div class="form-group">
-                    <input type="date" name="dateFin" value="<?= $row['end_date'] ?>" min="<?= $date ?>">
+                    <input type="date" name="dateFin" value="<?= $row['end_date'] ?>" min="<?= $end_date ?>">
                     <label for="dateFin">: Date de la veille où le logement devient indisponible</label>
                     </div>
                     <div class="form-group">
@@ -55,17 +56,17 @@
                     <div class="form-group">
                         <label for="exampleInputAddress">Adresse du logement </label>
                         <input type="text" class="form-control" name="adresse" id="exampleInputAddress"
-                             placeholder="<?= $row['address_article'] ?>" >
+                             value="<?= $row['address_article'] ?>" >
                     </div>
                     <div class="form-group">
                         <label for="exampleInputCity">Ville</label>
                         <input type="text" class="form-control" name="ville" id="exampleInputCity"
-                             placeholder="<?= $row['city'] ?>">
+                             value="<?= $row['city'] ?>">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPrice">Prix à la journée en euros</label>
                         <input type="text" class="form-control" name="price" id="exampleInputPrice"
-                             placeholder="<?= $row['price'] ?>">
+                             value="<?= $row['price'] ?>">
                     </div>
                     <div class="form-group">
                         <label for="file">Selectionnez une image pour l'annonce :
@@ -76,7 +77,7 @@
                 </form>
             </div>
             <div class="col-5">
-            <a class="btn btn-primary mb-3" href="profile.php" >Retour sans faire de modifications</a>
+            <a class="btn btn-info mb-3" href="profile.php" >Retour sans faire de modifications</a>
             </div>
 
 <?php require('assets/footer.php'); ?>

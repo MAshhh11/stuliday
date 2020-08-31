@@ -52,10 +52,10 @@
                             <p>Ville: <?= $row['city']; ?></p>
                             <p>Prix par jour en euros: <?= $row['price']; ?></p>
                             <p>Location du lieu : Du <?= $row['start_date']; ?> Au <?= $row['end_date']; ?></p>
-                            <a class="btn btn-primary mb-3" href="displayannonce.php?id=<?= $row['id']; ?>" >Voir l'annonce</a>
+                            <a class="btn btn-info mb-3" href="displayannonce.php?id=<?= $row['id']; ?>" >Voir l'annonce</a>
                             <?php 
                                 if(($_SESSION['id'] != $row['author_article']) && $row['active'] != 0 ){ ?>
-                                    <a class="btn btn-primary mb-3" href="reserverannonce.php?id=<?= $row['id']; ?>">Réserver</a>
+                                    <a class="btn btn-info mb-3" href="reserverannonce.php?id=<?= $row['id']; ?>">Réserver</a>
                                 <?php } ?> 
                                        
                         </div>
@@ -76,30 +76,28 @@
 
             while($row = $sql->fetch()){ 
             ?>
-            <div class="col-12">
-                    <div class="mt-3">
-                        <img class="img-fluid" src="<?=$row['image_url'];?>" alt="image_annonce" width="600" height="400">
-                        <div class="">
-                            <div class="card-title">
-                                <h2>Annonce n°<?= $row['id']; ?></h2>
-                            </div>
-                            <div class="card-text">
-                                <p>Titre: <?= $row['title']; ?></p>
-                                <p>Description: <?= $row['description']; ?></p>
-                                <p>Adresse: <?= $row['address_article']; ?></p>
-                                <p>Ville: <?= $row['city']; ?></p>
-                                <p>Prix par jour en euros: <?= $row['price']; ?></p>
-                                <p>Location du lieu : Du <?= $row['start_date']; ?> Au <?= $row['end_date']; ?></p>
-                                <a class="btn btn-primary mb-3" href="annonces.php">Retour</a>
-                                <?php 
-                                if($_SESSION['id'] != $row['author_article'] && $row['active'] != 0){ ?>
-                                    <a class="btn btn-primary mb-3" href="reserverannonce.php?id=<?= $row['id']; ?>">Réserver</a>
-                                <?php } ?>
-                                
-                            </div>
-                        </div>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-6">
+                        <img class="img-fluid" src="<?=$row['image_url'];?>" alt="image_annonce" width="800" height="600">
                     </div>
-                </div>
+                
+                    <div class="col-6">
+                        <h2>Annonce n°<?= $row['id']; ?></h2>
+                        <p>Titre: <?= $row['title']; ?></p>
+                        <p>Description: <?= $row['description']; ?></p>
+                        <p>Adresse: <?= $row['address_article']; ?></p>
+                        <p>Ville: <?= $row['city']; ?></p>
+                        <p>Prix par jour en euros: <?= $row['price']; ?></p>
+                        <p>Location du lieu : Du <?= $row['start_date']; ?> Au <?= $row['end_date']; ?></p>
+                        <a class="btn btn-info mb-3 w-25 p-2" href="annonces.php">Retour</a>
+                        <?php 
+                        if($_SESSION['id'] != $row['author_article'] && $row['active'] != 0){ ?>
+                            <a class="btn btn-info mb-3 w-25 p-2" href="reserverannonce.php?id=<?= $row['id']; ?>">Réserver</a>
+                        <?php } ?>
+                    </div>
+                </div>        
+            </div>
             <?php
              }
         }
@@ -114,7 +112,7 @@
 
             while($row = $sql->fetch()){ 
             ?>
-            <div class="col-12">
+            <div class="col-12 container">
                     <div class="mt-3">
                         <img class="img-fluid" src="<?=$row['image_url'];?>" alt="image_annonce" width="600" height="400">
                         <div class="">
@@ -128,8 +126,8 @@
                                 <p>Ville: <?= $row['city']; ?></p>
                                 <p>Prix par jour en euros: <?= $row['price']; ?></p>
                                 <p>Location du lieu : Du <?= $row['start_date']; ?> Au <?= $row['end_date']; ?></p>
-                                <a class="btn btn-primary mb-3" href="modifyannonce.php?id=<?= $row['id']; ?>" >Modifier l'annonce</a>
-                                <a class="btn btn-primary mb-3" href="deleteannonce.php?id=<?= $row['id']; ?>" >Supprimer l'annonce</a>
+                                <a class="btn btn-info mb-3" href="modifyannonce.php?id=<?= $row['id']; ?>" >Modifier l'annonce</a>
+                                <a class="btn btn-info mb-3" href="deleteannonce.php?id=<?= $row['id']; ?>" >Supprimer l'annonce</a>
                             </div>
                         </div>
                     </div>
@@ -148,8 +146,8 @@
             $compteur->setFetchMode(PDO::FETCH_ASSOC);
             while($result = $compteur->fetchAll()){
                 ?>
-             <a href="" class="btn btn-primary mb-3 <?php  if($result < 1){ echo 'disabled'; } ?>" data-toggle="modal" data-target="#listingAnnonces">Voir mes annonces  
-               <span class="badge badge-primary badge-pill"><?= COUNT($result); ?></span>
+             <a href="" class="btn btn-info mb-3 <?php  if($result < 1){ echo 'disabled'; } ?>" data-toggle="modal" data-target="#listingAnnonces">Voir mes annonces  
+               <span class="badge badge-info badge-pill"><?= COUNT($result); ?></span>
             </a>
             <?php
             }
@@ -164,8 +162,8 @@
             $compteur->setFetchMode(PDO::FETCH_ASSOC);
             while($result = $compteur->fetchAll()){
                 ?>
-             <a href="" class="btn btn-primary mb-3 <?php  if($result < 1){ echo 'disabled'; } ?>" data-toggle="modal" data-target="#listingResa">Voir mes reservations  
-               <span class="badge badge-primary badge-pill"><?= COUNT($result); ?></span>
+             <a href="" class="btn btn-info mb-3 <?php  if($result < 1){ echo 'disabled'; } ?>" data-toggle="modal" data-target="#listingResa">Voir mes reservations  
+               <span class="badge badge-info badge-pill"><?= COUNT($result); ?></span>
             </a>
             <?php
             }
@@ -186,8 +184,9 @@
                     <div class="card-title">
                         <h2>Votre réservation :</h2>
                         <p>Annonce n°<?= $row['id_annonce']; ?></p>
-                        <a class="btn btn-primary mb-3" href="displayannonce.php?id=<?= $row['id_annonce']; ?>"> Voir l'annonce</a>
-                        <a class="btn btn-primary mb-3" href="cancelreservation.php?id=<?= $row['id']; ?>"> Annuler la réservation</a>
+                        <p>Réservée le : <?= $row['dateReservation']; ?> </p>
+                        <a class="btn btn-info mb-3" href="displayannonce.php?id=<?= $row['id_annonce']; ?>"> Voir l'annonce</a>
+                        <a class="btn btn-info mb-3" href="cancelreservation.php?id=<?= $row['id']; ?>"> Annuler la réservation</a>
                     </div>
                 </div>
             </div>

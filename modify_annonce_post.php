@@ -52,7 +52,7 @@
                 die();
             endif;
             echo '<div class="alert alert-info"> Votre annonce a bien été mise à jour !</div>';
-            echo '<a class="btn btn-success col" href="profile.php">Retour vers votre profil</a>';
+            echo '<a class="btn btn-success col" href="annonces.php">Retour vers les annonces</a>';
 
         }else{
             echo 'Veuillez remplir tous les champs pour envoyez votre annonce !';

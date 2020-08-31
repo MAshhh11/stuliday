@@ -30,7 +30,7 @@
             $ville = htmlspecialchars($_POST['ville']);
             $price = htmlspecialchars($_POST['price']);
             $active = 1;
-    
+            
             if($file['size'] <= 1000000):
                 $dbname = uniqid() . '_' . $file['name'];
                 $upload_dir = "annonces/img/";

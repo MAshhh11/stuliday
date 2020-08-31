@@ -6,13 +6,13 @@
     include('assets/nav.php');
     
     if(isset($_SESSION['id'])){
-        
             $id = $_SESSION['id'];
             $sql = $db->query("SELECT * FROM users WHERE id = $id");
             $sql->setFetchMode(PDO::FETCH_ASSOC);
-    
             $row = $sql->fetch();
-        if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['adresse']) && !empty($_POST['email'])){
+            
+            
+        if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email'])){
             $nom = htmlspecialchars($_POST['nom']);
             $prenom = htmlspecialchars($_POST['prenom']);
             $email = htmlspecialchars($_POST['email']);
@@ -53,12 +53,12 @@
                     <div class="form-group">
                         <label for="exampleInputEmail">Nom</label>
                         <input type="text" class="form-control" name="nom" id="exampleInputEmail"
-                            aria-describedby="emailHelp" placeholder="<?= $row['lastName'];?>" value="">
+                            aria-describedby="emailHelp" value="<?= $row['lastName'];?>">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword">Prénom</label>
                         <input type="text" name="prenom" class="form-control" id="exampleInputPassword"
-                            placeholder="<?= $row['firstName'];?>" value="">
+                            value="<?= $row['firstName'];?>">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail">Email address</label>
@@ -69,7 +69,7 @@
                 </form>
             </div>
             <div class="col-md-4">
-                <a href="create_annonce.php" class="btn btn-primary mb-3">Publier une nouvelle annonce</a>
+                <a href="create_annonce.php" class="btn btn-info mb-3">Publier une nouvelle annonce</a>
                <div><?php annoncesCount();?></div>
                <div><?php reservationsCount();?></div>
             </div>

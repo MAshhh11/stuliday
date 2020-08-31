@@ -10,7 +10,7 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <div class="col-8 mt-3"> 
+                    <div class="col-8 mt-5"> 
                         <h1>Liste des annonces :</h1>
                     </div>
                 </div>

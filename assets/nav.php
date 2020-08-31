@@ -4,7 +4,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="index.php">Stuliday</a>
+    <a class="navbar-brand" href="index.php" style="font-family:Lobster;font-size: 35px; color: #555">Stuliday</a>
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <li class="nav-item">
         <a class="nav-link" href="annonces.php">Annonces</a>

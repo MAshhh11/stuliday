@@ -2,6 +2,7 @@
     $page='reserverannonce';
     require('inc/connect.php');
     require('inc/function.php');
+    require('assets/head.php');
    
 
     if(isset($_GET['id'])){
@@ -17,13 +18,15 @@
         $sth2->execute();
 
             
-            header('Location:annonces.php');
+            
             echo "<div class ='alert alert-success'> Votre réservation a bien été prise en compte !</div>";
+            echo '<a class="btn btn-success col" href="annonces.php">Retour vers les annonces</a>';
 
         }else{
             
-            header('Location:annonces.php');
+            
             echo "<div class ='alert alert-danger'> Une erreur vient de se produire.</div>";
+            echo '<a class="btn btn-danger col" href="annonces.php">Retour vers les annonces</a>';
         
     }
        

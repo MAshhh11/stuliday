@@ -11,19 +11,43 @@ include('assets/nav.php');
 
 ?>
 <section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="jumbotron jumbotron-fluid col-md-12 text-center my-4">
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+  <div class="carousel-caption d-flex flex-column">
+  <div class="jumbotron jumbotron-fluid col-md-12 text-center text-dark">
                     <h1 class="display-4">Bienvenue sur Stuliday !</h1>
                     <?php if(empty($_SESSION)){ ?> <p class="lead"> <br> <a href ='login.php'> Connectez-vous </a>ou<a href ='login.php'> Inscrivez-vous</a></p> <?php } ?>
-                    <hr class="my-4">
-                    <!-- <img class="d-block w-100" src="<?= random_images(1920,1080); ?>" alt="randomly generated"> -->
                 </div>
-        </div>
+  </div>
+    <div class="carousel-item active">
+      <img src="img/fond.jpg" width=1200 height=600 class="img-fluid w-100" alt="...">
     </div>
+    <div class="carousel-item">
+      <img src="img/terrasses.jpg" width=1200 height=600 class="img-fluid w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="img/combi.jpg" width=1200 height=600 class="img-fluid w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="img/pont.jpg" width=1200 height=600 class="img-fluid w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="img/green.jpg" width=1200 height=600 class="img-fluid w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
 </section>
 <?php 
-include('a inclure/carousel.php');
+
 require('assets/footer.php'); 
 ?>
