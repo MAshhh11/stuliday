@@ -29,6 +29,16 @@
                         displayResa();
                     ?>
                 </div>
+                <div class="row">
+                    <div class="col-8 mt-5"> 
+                        <h2>Liste des annonces postées :</h2>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <?php
+                        displayAnnoncesadmintools();
+                    ?>
+                </div>
             </div>
         </section>
 <?php 

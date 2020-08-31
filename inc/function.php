@@ -61,6 +61,41 @@
         
     }
 
+    function displayAnnoncesadmintools(){
+        global $db;
+        $sql = $db->query("SELECT * FROM annonces");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+
+        while($row = $sql->fetch()){ 
+        ?>
+           <div class="col-4">
+                <div class="card mt-3">
+                    <img class="card-img-top" src="<?=$row['image_url'];?>" alt="image_annonce" width="300" height="220">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h2>Annonce n°<?= $row['id']; ?></h2>
+                        </div>
+                        <div class="card-text">
+                            <p>Titre: <?= $row['title']; ?></p>
+                            <p>Description: <?= shorten_text($row['description']); ?></p>
+                            <p>Ville: <?= $row['city']; ?></p>
+                            <p>Prix par jour en euros: <?= $row['price']; ?></p>
+                            <p>Location du lieu : Du <?= $row['start_date']; ?> Au <?= $row['end_date']; ?></p>
+                            <div class="mt-3">
+                            <a class="btn-info btn" href="displayannonce.php?id=<?= $row['id']; ?>">Voir l'annonce</a>
+                            </div>
+                            <div class="mt-3">
+                            <a class="btn btn-info mb-3" href="deleteannonce.php?id=<?= $row['id']; ?>"> Supprimer l'annonce</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+        
+    }
+
 
     function displayAllAnnonces(){
         global $db;

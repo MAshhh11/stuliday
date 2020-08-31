@@ -11,9 +11,11 @@
         $sth->execute();
         
         if($sth){
-            header("Location:profile.php?action=d");
+            echo "<div class ='alert alert-success'> Annonce bien supprimée !</div>";
+        echo '<a class="btn btn-success col" href="profile.php">Retour vers votre profil</a>';
         }else{
-            header("Location:profile.php?action=e");
+            echo "<div class ='alert alert-danger'> Une erreur vient de se produire.</div>";
+        echo '<a class="btn btn-danger col" href="profile.php">Retour vers votre profil</a>';
         }
     }
 
