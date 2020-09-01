@@ -1,9 +1,9 @@
 <?php 
     $page='annonce';
-    require('inc/connect.php');
-    require('assets/head.php');
-    require('inc/function.php');
-    include('assets/nav.php');
+    require('inc/connect.php'); // connexion a la base de données
+    require('assets/head.php'); // appel au code html de l'entete
+    require('inc/function.php'); // appel aux fichier contenant nos fonctions
+    include('assets/nav.php'); // appel au code html contenant la barre de navigation
 
     ?>
 
@@ -16,7 +16,7 @@
                 </div>
                 <div class="row">
                     <?php
-                        // displayAllUsers();
+                        // Fonction qui affiche la liste des annonces
                         displayAllAnnonces();
                     ?>
                 </div>

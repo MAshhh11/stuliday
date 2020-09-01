@@ -8,6 +8,7 @@
          session_destroy();
          header ('Location:index.php');
     }
+    // connexion a la DB
     
     $servername = 'localhost'; $dbname='stuliday';$user='root'; $pass='';
     try{

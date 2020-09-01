@@ -1,10 +1,11 @@
 <?php 
-    $page ='deleteannonce';
-    require('inc/connect.php');
-    require('inc/function.php'); 
+    $page ='deleteuser';
+    require('inc/connect.php'); // connexion à la db
+    require('inc/function.php');  
     require('assets/head.php');
     include('assets/nav.php');
 
+    // on récupère l'id de l'utilisateur puis on prépare une fonction mysql pour supprimer cette user
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $sth = $db->prepare("DELETE FROM users WHERE id = $id");

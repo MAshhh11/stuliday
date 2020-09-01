@@ -1,25 +1,14 @@
 <?php 
     $page ='create_annonce';
-    require('inc/connect.php'); 
-    require('assets/head.php');
-    include('assets/nav.php');
+    require('inc/connect.php'); // connexion a la db
+    require('assets/head.php'); // appel au fichier contenant le html de l'entete
+    include('assets/nav.php'); // appel au fichier contenant le htm de la barre de navigation
 
-            // var_Dump($_SESSION);
-            // var_Dump($file = $_FILES['image']);
-            // var_Dump($titre = htmlspecialchars($_POST['titre']));
-            // var_Dump($description = htmlspecialchars($_POST['description']));
-            // var_Dump($dateDebut = $_POST['dateDebut']);
-            // var_Dump($dateFin = $_POST['dateFin']);
-            // var_Dump($category = $_POST['category']);
-            // var_Dump($adresse = htmlspecialchars($_POST['adresse']));
-            // var_Dump($ville = htmlspecialchars($_POST['ville']));
-            // var_Dump($price = htmlspecialchars($_POST['price']));
-            // var_Dump($authorAnnonce = $_SESSION['id']);
 
-    if(isset($_SESSION)){
-        // echo 'session ok <br>';
+    if(isset($_SESSION)){ // si une session est active on récupère les données du formulaire rentrées par l'user
+        
         if(!empty($_POST['titre']) && !empty($_POST['description']) && !empty($_POST['dateDebut']) && !empty($_POST['dateFin']) && !empty($_POST['category']) && !empty($_POST['adresse']) && !empty($_POST['ville']) && !empty($_POST['price'])){
-            // echo 'verifs ok <br>';
+            
             $file = $_FILES['image'];
             $titre = htmlspecialchars($_POST['titre']);
             $description = htmlspecialchars($_POST['description']);
@@ -29,17 +18,15 @@
             $adresse = htmlspecialchars($_POST['adresse']);
             $ville = htmlspecialchars($_POST['ville']);
             $price = htmlspecialchars($_POST['price']);
-            $active = 1;
+            $active = 1; // on défini active en 1 de base 1= libre
             
-            if($file['size'] <= 1000000):
+            if($file['size'] <= 1000000): // si la taille du fichier n'excède pas 1000000 on l'upload
                 $dbname = uniqid() . '_' . $file['name'];
                 $upload_dir = "annonces/img/";
                 $upload_name = $upload_dir . $dbname;
                 $move_result = move_uploaded_file($file['tmp_name'], $upload_name);
                 if($move_result): 
-                    // echo 'move result ok <br>';
-                    // var_Dump($move_result);
-                    // var_Dump($upload_name);
+                  // si l'upload réussi on prépare la requete pour mettre à jour "annonces" dans la db
                         
                     $sth = $db->prepare(" INSERT INTO annonces(title,description,city,category,image_url,address_article,active,price,author_article,start_date,end_date) VALUES (:title,:description,:city,:category,:image_url,:address_article,:active,:price,:author_article,:start_date,:end_date)
                     ");

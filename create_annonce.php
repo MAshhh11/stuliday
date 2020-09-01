@@ -3,14 +3,16 @@
     require('assets/head.php');
     include('assets/nav.php');
     require('inc/connect.php'); 
-    $date = date('Y-m-d');
-    $end_date = date('Y-m-d', strtotime('+1 days'));
+
+    $date = date('Y-m-d'); // définition de la variable date qui correspond à la date du jour
+    $end_date = date('Y-m-d', strtotime('+1 days')); // définition de la variable end_date qui correspond à la date du jour +1 jour
 ?>
 
 <div class="col-md-12 text-center">
     <h2 class="py-4">Créez votre annonce personnalisée :</h2>
 </div>
 <div class="col-md-8 mb-5">
+    <!-- Formulaire de création d'annonce -->
                 <p>Pour démarrer veuillez remplir les champs souhaités :</p>
                 <form enctype="multipart/form-data" action="create_annonce_post.php" method="POST">
                     <div class="form-group">

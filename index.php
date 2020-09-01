@@ -1,16 +1,18 @@
 <?php
     $page='index';
-    require ('inc/connect.php');
+    require ('inc/connect.php'); // lien de connexion à la base de données
     require ('inc/function.php');// lien vers nos fonctions
 
 
 ?>
 <?php
-require('assets/head.php');
-include('assets/nav.php'); 
+require('assets/head.php'); // appel au fichier contenant le code html de l'entete
+include('assets/nav.php'); // appel au ficher contenant le code html de la barre de navigation
 
 ?>
 <section>
+
+<!-- CAROUSEL de la page d'accueil -->
 
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
@@ -49,5 +51,5 @@ include('assets/nav.php');
 </section>
 <?php 
 
-require('assets/footer.php'); 
+require('assets/footer.php');  // appel au fichier contenant le code html pour le footer
 ?>

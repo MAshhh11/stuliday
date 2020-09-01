@@ -1,7 +1,7 @@
 <?php 
     $page ='displayannonce';
     require('inc/connect.php');
-    require('inc/function.php'); 
+    require('inc/function.php'); // appel au fichier des fonctions
     require('assets/head.php');
     include('assets/nav.php');
 
@@ -16,6 +16,7 @@
         </div>
         <div class="row">
             <?php
+            // fonction qui affiche une annonce
                 displayAnnonce();
             ?>
         </div>

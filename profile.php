@@ -1,17 +1,18 @@
 <?php 
     $page ='profile';
-    require('inc/connect.php');
-    require('inc/function.php'); 
-    require('assets/head.php');
-    include('assets/nav.php');
+    require('inc/connect.php'); // connexion à la db
+    require('inc/function.php');  // appel aux fonctions
+    require('assets/head.php'); // html de l'entete
+    include('assets/nav.php'); // html de la nav
     
+    // si un user est connecté on recupère l'id et on prépare une requete pour afficher les données
     if(isset($_SESSION['id'])){
             $id = $_SESSION['id'];
             $sql = $db->query("SELECT * FROM users WHERE id = $id");
             $sql->setFetchMode(PDO::FETCH_ASSOC);
             $row = $sql->fetch();
             
-            
+        // si les champs du formulaire ne sont pas vide on récupere les données insérées pour l'user pour les mettre à jour dans la BD   
         if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email'])){
             $nom = htmlspecialchars($_POST['nom']);
             $prenom = htmlspecialchars($_POST['prenom']);
@@ -25,7 +26,7 @@
             $sth->bindValue(2, $prenom);
             $sth->bindValue(3, $email);
             $sth->bindValue(4, $id);
-    
+            // si la requete s'execute on affiche un msg de succès
             if($sth->execute()){
                 echo "<div class ='alert alert-success'> Votre profil a bien été mis à jour</div>";
                 
@@ -47,6 +48,8 @@
             <div class="col-md-12 text-center">
                 <h2 class="py-4">Mon profil :</h2>
             </div>
+
+            <!-- formulaire de mise à jour de profil -->
             <div class="col-md-8">
                 <p>Veuillez remplir les champs suivants pour mettre à jour votre profil :</p>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -105,7 +108,7 @@
     <div class="modal-dialog listings" role="document">
         <div class="modal-content text-center">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Mes annonces</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Mes reservations</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

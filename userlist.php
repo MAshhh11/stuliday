@@ -1,9 +1,9 @@
 <?php 
-    $page='annonce';
-    require('inc/connect.php');
-    require('assets/head.php');
-    require('inc/function.php');
-    include('assets/nav.php');
+    $page='userlist';
+    require('inc/connect.php'); // connexion à la base de données
+    require('assets/head.php'); // appel au fichier contenant le code html de l'entete
+    require('inc/function.php');  // appel au fichier contenant les fonctions
+    include('assets/nav.php'); // appel au fichier contenant le code html de la barre de navigation
 
     ?>
 
@@ -16,6 +16,7 @@
                 </div>
                 <div class="row mt-3">
                     <?php
+                    // fonction qui affiche les utilisateurs
                         displayAllUsers();
                     ?>
                 </div>
@@ -26,6 +27,7 @@
                 </div>
                 <div class="row mt-3">
                     <?php
+                    // fonction qui affiche les réservations
                         displayResa();
                     ?>
                 </div>
@@ -36,6 +38,7 @@
                 </div>
                 <div class="row mt-3">
                     <?php
+                    // fonction qui affiche les annonces
                         displayAnnoncesadmintools();
                     ?>
                 </div>
@@ -43,4 +46,4 @@
         </section>
 <?php 
     
-require('assets/footer.php'); ?>
+require('assets/footer.php'); ?> <!-- appel au fichier contenant le code html de la barre de navigation -->

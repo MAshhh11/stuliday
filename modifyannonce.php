@@ -1,12 +1,13 @@
 <?php 
-    $page ='displayannonce';
-    require('inc/connect.php');
+    $page ='modifyannonce';
+    require('inc/connect.php'); // connexion à la db
     require('inc/function.php'); 
     require('assets/head.php');
     include('assets/nav.php');
-    $date = date('Y-m-d');
-    $end_date = date('Y-m-d', strtotime('+1 days'));
+    $date = date('Y-m-d'); // définition de la variable date qui correspond a la date du jour
+    $end_date = date('Y-m-d', strtotime('+1 days')); // définition de la variable end_date qui correspond a la date du jour +1 jour
 
+    // si l'id de l'annonce est bien recupérée on prépare une requete pour afficher les données de l'annonce ciblée
     if(isset($_GET['id'])){
         global $db;
         $annonce_id = $_GET['id'];
@@ -22,6 +23,7 @@
     <h2 class="py-4">Modification de votre annonce :</h2>
 </div>
 <div class="col-md-8 mb-5">
+<!-- formulaire de modification du l'annonce -->
                 <p>Veuillez modifiee les champs souhaités :</p>
                 <form enctype="multipart/form-data" action="modify_annonce_post.php?id=<?= $row['id'] ?>" method="POST">
                     <div class="form-group">

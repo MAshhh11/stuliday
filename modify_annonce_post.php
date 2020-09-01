@@ -1,10 +1,10 @@
 <?php 
     $page ='modify_annonce_post';
-    require('inc/connect.php');
+    require('inc/connect.php'); // connexion a la db
     require('inc/function.php'); 
     require('assets/head.php');
     include('assets/nav.php');
-
+// si on récupère l'id de l'annonce et qu'on récupère bien les données des champs renseignés par l'user, on prépare unre requete pour modifier les données de l'annonce ciblée dans la db
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         if(!empty($_POST['titre']) && !empty($_POST['description']) && !empty($_POST['dateDebut']) && !empty($_POST['dateFin']) && !empty($_POST['category']) && !empty($_POST['adresse']) && !empty($_POST['ville']) && !empty($_POST['price'])){
@@ -17,14 +17,14 @@
             $adresse = htmlspecialchars($_POST['adresse']);
             $ville = htmlspecialchars($_POST['ville']);
             $price = htmlspecialchars($_POST['price']);
-            $active = 1;
+            $active = 1; // on défini active en 1 de base
     
-            if($file['size'] <= 1000000):
+            if($file['size'] <= 1000000): // si la taille de fichier n'excède pas 1000000 alors on l'upload
                 $dbname = uniqid() . '_' . $file['name'];
                 $upload_dir = "annonces/img/";
                 $upload_name = $upload_dir . $dbname;
                 $move_result = move_uploaded_file($file['tmp_name'], $upload_name);
-                if($move_result): 
+                if($move_result): // si l'upload réussi on envoie la requete
                      
                     $sth = $db->prepare(" UPDATE annonces SET title=:title, description=:description,city=:city, category=:category, image_url=:image_url, address_article=:address_article ,active=:active, price=:price,author_article=:author_article, start_date=:start_date, end_date=:end_date  WHERE id=:id
                     ");

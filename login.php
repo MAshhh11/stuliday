@@ -1,8 +1,10 @@
 <?php 
     $page ='login';
-    require('inc/connect.php');
-    require('assets/head.php');
-    include('assets/nav.php');
+    require('inc/connect.php'); // lien de connexion à la base de données
+    require('assets/head.php'); // appel au fichier contenant le code html de l'entete
+    include('assets/nav.php'); // appel au ficher contenant le code html de la barre de navigation
+
+    // Requette securisées qui récupères les données du formulaire d'inscription et insère ces données dans la base de données stuliday
     if (isset($_POST['submit-signup'])){
         $user_email = htmlspecialchars($_POST['user_email_signup']);
         $user_pass = htmlspecialchars($_POST['user_password_signup']);
@@ -33,6 +35,8 @@
         echo "<div class ='alert alert-danger'> Une erreur vient de se produire.</div>";
         echo '<a class="btn btn-danger col" href="login.php">Retour vers le portail de connexion</a>';
     }
+
+    // Sinon requete qui récupère les données du formulaire de connexion et qui vérifie les identifiants entrées
 } elseif(isset($_POST['submit-login'])){
      $user_email = htmlspecialchars($_POST['user_email']);
      $user_pass = htmlspecialchars($_POST['user_password']);
@@ -67,6 +71,8 @@
             } ?>
             <div class="col-md-6 mt-5">
                 <h1>Se connecter</h1>
+
+                <!-- Formulaire d'inscription -->
                 
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                     <div class="form-group col-md-10">
@@ -81,6 +87,9 @@
                     <button type="submit" name="submit-login" class="btn btn-info col-md-4 offset-3">Connexion</button>
                 </form>
             </div>
+
+                <!-- Formulaire de connexion -->
+                
             <div class="col-md-6 mt-5">
             <h1>S'inscrire</h1>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">

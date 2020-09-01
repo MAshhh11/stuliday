@@ -11,7 +11,7 @@
         return preg_replace('/\w+$/',' ',$return) . $append ; //fonction qui raccourcit le texte de description des annonces sans couper les mots
     }
 
-    function displayAllUsers(){
+    function displayAllUsers(){ //fonction admin pour afficher tous les users
         global $db;
         $sql = $db->query("SELECT * FROM users");
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@
         
     }
 
-    function displayResa(){
+    function displayResa(){ // fonction admin pour afficher toutes les reservations
         global $db;
         $sql = $db->query("SELECT * FROM reservations");
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -61,7 +61,7 @@
         
     }
 
-    function displayAnnoncesadmintools(){
+    function displayAnnoncesadmintools(){ // fonction admin pour afficher toutes les annonces
         global $db;
         $sql = $db->query("SELECT * FROM annonces");
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -97,7 +97,7 @@
     }
 
 
-    function displayAllAnnonces(){
+    function displayAllAnnonces(){ // affiche toutes les annonces sur la page annonce
         global $db;
         $sql = $db->query("SELECT * FROM annonces");
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -132,7 +132,7 @@
         
     }
  
-    function displayAnnonce(){
+    function displayAnnonce(){ // affiche une annonce sur une page avec toutes ses infos
         if(isset($_GET['id'])){
             global $db;
             $annonce_id = $_GET['id'];
@@ -168,7 +168,7 @@
         }
     }
 
-    function displayYourAnnonces(){
+    function displayYourAnnonces(){ // affiche dans un modal les annonces propres aux utilisateurs 
         if(isset($_SESSION['id'])){
             global $db;
             $user_id = $_SESSION['id'];
@@ -203,7 +203,7 @@
     }
 
 
-    function annoncesCount() {
+    function annoncesCount() { // fonction compteur d'annonces pour interface utilisateur
         global $db;
         if(isset($_SESSION['id'])){
             $id_user = $_SESSION['id'];
@@ -219,7 +219,7 @@
         }
     }
 
-    function reservationsCount() {
+    function reservationsCount() { // fonction compteur de reservations pour utilisateur
         global $db;
         if(isset($_SESSION['id'])){
             $id_user = $_SESSION['id'];
@@ -235,7 +235,7 @@
         }
     }
 
-    function displayYourReservation(){
+    function displayYourReservation(){ // Affiche les reservations effectuées dans un modal pour l'user
         if(isset($_SESSION['id'])){
             global $db;
             $user_id = $_SESSION['id'];
@@ -268,6 +268,8 @@
 
 
 
+
+<!-- REQUETES JOINTES -->
 
 <!-- //requete sql pour afficher les mails des auteurs et les titres d'annonces correspondant :
 //SELECT users.email, annonces.title FROM users INNER JOIN annonces WHERE users.id = annonces.author_article
