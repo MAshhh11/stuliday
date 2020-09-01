@@ -8,15 +8,16 @@
     $end_date = date('Y-m-d', strtotime('+1 days')); // définition de la variable end_date qui correspond a la date du jour +1 jour
 
     // si l'id de l'annonce est bien recupérée on prépare une requete pour afficher les données de l'annonce ciblée
-    if(isset($_GET['id'])){
-        global $db;
-        $annonce_id = $_GET['id'];
-        $sql = $db->query("SELECT * FROM annonces WHERE id = $annonce_id");
-        $sql->setFetchMode(PDO::FETCH_ASSOC);
 
-        $row = $sql->fetch();
-    }
-    
+    if(isset($_SESSION['id'])){
+        if(isset($_GET['id'])){
+            global $db;
+            $annonce_id = $_GET['id'];
+            $sql = $db->query("SELECT * FROM annonces WHERE id = $annonce_id");
+            $sql->setFetchMode(PDO::FETCH_ASSOC);
+
+            $row = $sql->fetch();
+        }
 ?>
 
 <div class="col-md-12 text-center">
@@ -81,5 +82,9 @@
             <div class="col-5">
             <a class="btn btn-info mb-3" href="profile.php" >Retour sans faire de modifications</a>
             </div>
+            <?php
+    }else{
+        echo '<div class="alert alert-danger">Il faut vous connecter pour effectuer cette action !</div>';
+    }
 
-<?php require('assets/footer.php'); ?>
+require('assets/footer.php'); ?>

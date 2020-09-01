@@ -6,6 +6,7 @@
     include('assets/nav.php'); // appel au ficher contenant le code html de la barre de navigation
 
     // requete qui récupère l'id de l'annonce et qui prépare une requete SQL de suppression
+if(isset($_SESSION['id'])){
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $sth = $db->prepare("DELETE FROM annonces WHERE id = $id");
@@ -19,5 +20,9 @@
         echo '<a class="btn btn-danger col" href="profile.php">Retour vers votre profil</a>';
         }
     }
+}else{
+    
+    echo '<div class="alert alert-danger">Il faut vous connecter pour effectuer cette action !</div>';
+}
 
     ?>

@@ -12,6 +12,7 @@
     }
 
     function displayAllUsers(){ //fonction admin pour afficher tous les users
+        if (isset($_SESSION['id']) && $_SESSION['id'] == 6){
         global $db;
         $sql = $db->query("SELECT * FROM users");
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -30,10 +31,14 @@
             </div>
         <?php
         }
-        
+        } else {
+            echo "<div class ='alert alert-danger'> Veuillez vous connecter en tant qu'admin pour voir la liste des utilisateurs.</div>";
+            
+        }
     }
 
     function displayResa(){ // fonction admin pour afficher toutes les reservations
+        if (isset($_SESSION['id']) && $_SESSION['id'] == 6){
         global $db;
         $sql = $db->query("SELECT * FROM reservations");
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -58,10 +63,14 @@
             </div>
         <?php
         }
-        
+        } else {
+            echo "<div class ='alert alert-danger'> Veuillez vous connecter en tant qu'admin pour voir la liste des réservations.</div>";
+            
+        }
     }
 
     function displayAnnoncesadmintools(){ // fonction admin pour afficher toutes les annonces
+        if (isset($_SESSION['id']) && $_SESSION['id'] == 6){
         global $db;
         $sql = $db->query("SELECT * FROM annonces");
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -93,11 +102,15 @@
             </div>
         <?php
         }
-        
+        } else {
+            echo "<div class ='alert alert-danger'> Veuillez vous connecter en tant qu'admin pour voir la liste des annonces</div>";
+            
+        }
     }
 
 
     function displayAllAnnonces(){ // affiche toutes les annonces sur la page annonce
+        if(isset($_SESSION['id'])){
         global $db;
         $sql = $db->query("SELECT * FROM annonces");
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -129,42 +142,50 @@
             </div>
         <?php
         }
-        
+        }  else {
+            echo "<div class ='alert alert-danger'> Veuillez vous connecter pour voir les annonces.</div>";
+            
+        }
     }
  
     function displayAnnonce(){ // affiche une annonce sur une page avec toutes ses infos
-        if(isset($_GET['id'])){
-            global $db;
-            $annonce_id = $_GET['id'];
-            $sql = $db->query("SELECT * FROM annonces WHERE id = $annonce_id");
-            $sql->setFetchMode(PDO::FETCH_ASSOC);
+        if(isset($_SESSION['id'])){
+            if(isset($_GET['id'])){
+                global $db;
+                $annonce_id = $_GET['id'];
+                $sql = $db->query("SELECT * FROM annonces WHERE id = $annonce_id");
+                $sql->setFetchMode(PDO::FETCH_ASSOC);
 
-            while($row = $sql->fetch()){ 
-            ?>
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-6">
-                        <img class="img-fluid" src="<?=$row['image_url'];?>" alt="image_annonce" width="800" height="600">
-                    </div>
-                
-                    <div class="col-6">
-                        <h2>Annonce n°<?= $row['id']; ?></h2>
-                        <p>Titre: <?= $row['title']; ?></p>
-                        <p>Description: <?= $row['description']; ?></p>
-                        <p>Adresse: <?= $row['address_article']; ?></p>
-                        <p>Ville: <?= $row['city']; ?></p>
-                        <p>Prix par jour en euros: <?= $row['price']; ?></p>
-                        <p>Location du lieu : Du <?= $row['start_date']; ?> Au <?= $row['end_date']; ?></p>
-                        <a class="btn btn-info mb-3 w-25 p-2" href="annonces.php">Retour</a>
-                        <?php 
-                        if($_SESSION['id'] != $row['author_article'] && $row['active'] != 0){ ?>
-                            <a class="btn btn-info mb-3 w-25 p-2" href="reserverannonce.php?id=<?= $row['id']; ?>">Réserver</a>
-                        <?php } ?>
-                    </div>
-                </div>        
-            </div>
-            <?php
-             }
+                while($row = $sql->fetch()){ 
+                ?>
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-6">
+                            <img class="img-fluid" src="<?=$row['image_url'];?>" alt="image_annonce" width="800" height="600">
+                        </div>
+                    
+                        <div class="col-6">
+                            <h2>Annonce n°<?= $row['id']; ?></h2>
+                            <p>Titre: <?= $row['title']; ?></p>
+                            <p>Description: <?= $row['description']; ?></p>
+                            <p>Adresse: <?= $row['address_article']; ?></p>
+                            <p>Ville: <?= $row['city']; ?></p>
+                            <p>Prix par jour en euros: <?= $row['price']; ?></p>
+                            <p>Location du lieu : Du <?= $row['start_date']; ?> Au <?= $row['end_date']; ?></p>
+                            <a class="btn btn-info mb-3 w-25 p-2" href="annonces.php">Retour</a>
+                            <?php 
+                            if($_SESSION['id'] != $row['author_article'] && $row['active'] != 0){ ?>
+                                <a class="btn btn-info mb-3 w-25 p-2" href="reserverannonce.php?id=<?= $row['id']; ?>">Réserver</a>
+                            <?php } ?>
+                        </div>
+                    </div>        
+                </div>
+                <?php
+                }
+            }
+        } else {
+            echo "<div class ='alert alert-danger'> Veuillez vous connecter pour voir les annonces.</div>";
+            
         }
     }
 
@@ -267,17 +288,3 @@
 
 
 
-
-
-<!-- REQUETES JOINTES -->
-
-<!-- //requete sql pour afficher les mails des auteurs et les titres d'annonces correspondant :
-//SELECT users.email, annonces.title FROM users INNER JOIN annonces WHERE users.id = annonces.author_article
-//ou
-//SELECT users.email, annonces.title FROM users INNER JOIN annonces ON users.id = annonces.author_article
-//Afficher les email et mot de passe des auteurs des annonces
-//SELECT users.email,users.password FROM users LEFT OUTER JOIN annonces ON users.id = annonces.author_article
-//Afficher la liste d'auteurs qui n'ont pas fait d'annonces
-//SELECT users.email,users.password,annonces.title FROM users LEFT OUTER JOIN annonces ON users.id = annonces.author_article WHERE annonces.title IS NULL
-//Afficher la liste d'user et les annonces associées
-//SELECT u.email,u.password, a.title,a.description FROM users AS u LEFT JOIN annonces AS a ON u.id= a.author_article UNION ALL SELECT u.email,u.password, a.title,a.description FROM users AS u RIGHT JOIN annonces AS a ON u.id = a.author_article WHERE u.id= NULL -->

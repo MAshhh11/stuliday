@@ -5,7 +5,7 @@
     include('assets/nav.php'); // appel au fichier contenant le htm de la barre de navigation
 
 
-    if(isset($_SESSION)){ // si une session est active on récupère les données du formulaire rentrées par l'user
+    if(isset($_SESSION['id'])){ // si une session est active on récupère les données du formulaire rentrées par l'user
         
         if(!empty($_POST['titre']) && !empty($_POST['description']) && !empty($_POST['dateDebut']) && !empty($_POST['dateFin']) && !empty($_POST['category']) && !empty($_POST['adresse']) && !empty($_POST['ville']) && !empty($_POST['price'])){
             
@@ -60,7 +60,8 @@
         }
     
 }else{
-    echo 'Il faut vous connecter pour déposer une annonce !';
+    
+    echo '<div class="alert alert-danger"> Il faut vous connecter pour déposer une annonce !</div>';
 }
 
 

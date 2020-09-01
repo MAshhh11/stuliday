@@ -5,7 +5,8 @@
     require('assets/head.php');
     include('assets/nav.php');
 // si on récupère l'id de l'annonce et qu'on récupère bien les données des champs renseignés par l'user, on prépare unre requete pour modifier les données de l'annonce ciblée dans la db
-    if(isset($_GET['id'])){
+if(isset($_SESSION['id'])){    
+if(isset($_GET['id'])){
         $id = $_GET['id'];
         if(!empty($_POST['titre']) && !empty($_POST['description']) && !empty($_POST['dateDebut']) && !empty($_POST['dateFin']) && !empty($_POST['category']) && !empty($_POST['adresse']) && !empty($_POST['ville']) && !empty($_POST['price'])){
             $file = $_FILES['image'];
@@ -58,8 +59,9 @@
             echo 'Veuillez remplir tous les champs pour envoyez votre annonce !';
         }
     
+    }
+    
 }else{
-    echo 'Il faut vous connecter pour déposer une annonce !';
+    echo '<div class="alert alert-danger">Il faut vous connecter pour effectuer cette action !</div>';
 }
-
 ?>
