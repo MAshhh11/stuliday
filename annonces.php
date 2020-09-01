@@ -1,5 +1,5 @@
 <?php 
-    $page='annonce';
+    $page='annonces';
     require('inc/connect.php'); // connexion a la base de données
     require('assets/head.php'); // appel au code html de l'entete
     require('inc/function.php'); // appel aux fichier contenant nos fonctions

@@ -1,5 +1,5 @@
 <?php 
-    $page ='create_annonce';
+    $page ='create_annonce_post';
     require('inc/connect.php'); // connexion a la db
     require('assets/head.php'); // appel au fichier contenant le html de l'entete
     include('assets/nav.php'); // appel au fichier contenant le htm de la barre de navigation
